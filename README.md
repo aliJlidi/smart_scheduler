@@ -17,7 +17,6 @@ The scheduler:
 - [Usage](#usage)
 - [How It Works](#how-it-works)
 - [Sample Output](#sample-output)
-- [Future Work](#future-work)
 - [Credits](#credits)
 
 ---
@@ -137,16 +136,9 @@ Job 2 → Machine 1, Start: 0, End: 3, Tardiness: 1
 Total jobs scheduled: 50
 ```
 
----
 
-## Future Work
 
-- Add real-time rescheduling via Genetic Algorithm
-- Simulate machine breakdowns and dynamic job arrival
-- Export schedule to CSV, PDF, or image
-- Add web-based dashboard using Flask or Streamlit
 
----
 
 ## Credits
 

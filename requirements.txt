@@ -1,0 +1,4 @@
+pyomo
+sqlite3
+tkinter 
+matplotlib

@@ -39,19 +39,118 @@ The scheduler:
 ```bash
 git clone https://github.com/your-username/smart_scheduler.git
 cd smart_scheduler
+```
 
-## Project Structure
+### 2. Set Up Python Environment
 
-smart_scheduler/
-├── db/
-│ └── init_db.py # Creates SQLite tables
-├── models/
-│ ├── job_generator.py # Inserts random jobs
-│ ├── machine_generator.py # Inserts random machines
-│ └── scheduler_logic.py # Greedy job assignment
-├── ui/
-│ └── scheduler_gui.py # GUI with embedded Gantt chart + animation
-├── scheduler.db # SQLite database (auto-generated)
-├── main.py # Entry point to initialize database
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+Ensure Python 3.7 or newer is installed:
+
+```bash
+python --version
+```
+
+### 3. (Optional) Create a Virtual Environment
+
+```bash
+python -m venv venv
+source venv/bin/activate        # On Windows: venv\Scripts\activate
+```
+
+### 4. Install Required Packages
+
+Tkinter and SQLite are standard in most Python distributions, but for plotting:
+
+```bash
+pip install -r requirements.txt
+```
+
+If `tkinter` is missing on Linux:
+
+```bash
+sudo apt install python3-tk
+```
+
+---
+
+## Usage
+
+### Step 1: Initialize the Database
+
+This creates the SQLite database and populates it with default values:
+
+```bash
+python main.py
+```
+
+You should see:
+
+```
+Database initialized.
+```
+
+### Step 2: Run the Scheduler GUI
+
+Launch the graphical interface:
+
+```bash
+python ui/scheduler_gui.py
+```
+
+Inside the app:
+- Enter number of jobs and machines
+- Click **Generate Data**
+- Click **Run Scheduler**
+
+---
+
+## How It Works
+
+### Database
+
+- `jobs` table contains: `id`, `duration`, `deadline`, `energy_required`
+- `machines` table contains: `id`, `capacity`, and `is_available`
+
+### Scheduling Logic
+
+- Jobs are sorted by **earliest deadline first**
+- Each job is assigned to the machine with the **earliest availability**
+- The algorithm records:
+  - Job ID
+  - Assigned machine
+  - Start and end times
+  - Tardiness
+
+### GUI
+
+- Built using Python’s built-in `tkinter` module
+- Displays results in a responsive table
+- Includes a dynamic Gantt chart with optional animation
+
+---
+
+## Sample Output (Console)
+
+```text
+Job 1 → Machine 2, Start: 0, End: 4, Tardiness: 0
+Job 2 → Machine 1, Start: 0, End: 3, Tardiness: 1
+...
+Total jobs scheduled: 50
+```
+
+---
+
+## Future Work
+
+- Add real-time rescheduling via Genetic Algorithm
+- Simulate machine breakdowns and dynamic job arrival
+- Export schedule to CSV, PDF, or image
+- Add web-based dashboard using Flask or Streamlit
+
+---
+
+## Credits
+
+**Developed by:** Ali Jlidi  
+**PhD Candidate**, University of Miskolc  
+**June 2025**  
+**Research Topic:** Smart Scheduling in Industry 4.0
